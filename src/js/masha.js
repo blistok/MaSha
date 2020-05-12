@@ -24,7 +24,8 @@
 
     LocationHandler.prototype = {
         setHash: function(hash) {
-            window.location.hash = hash;
+            // window.location.hash = hash;
+            history.replaceState({}, "", hash);
         },
         getHash: function() {
             return window.location.hash;
@@ -92,8 +93,8 @@
                         elem = elem.offsetParent;
                     }
 
-                    window.scrollTo(x, y - 150);
-                }, 1);
+                    window.scrollTo(x, y - window.innerHeight / 2);
+                }, 250);
             }
         },
         'isBlock': function(el) {
@@ -317,8 +318,8 @@
 
             var coords = this.getMarkerCoords(this.marker, markerCoord);
 
-            this.marker.style.top = coords.y + 'px';
-    //        this.marker.style.left = coords.x + 'px';
+            this.marker.style.top = coords.y + 5 + 'px';
+            this.marker.style.left = coords.x + 5 + 'px';
 
             var sel = window.getSelection();
             if (sel.rangeCount){
